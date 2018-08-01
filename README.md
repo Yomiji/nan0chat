@@ -37,13 +37,51 @@ Usage of Nan0Chat:
 ```
 ./Nan0Chat  --key <encryption key> --sig <signature> --server=true --port=6865
 ```
-Replace <encryption key> with the encryption key and <signature> with the signature
+Replace \<encryption key> with the encryption key and \<signature> with the signature
 
 ###### Start a client:
 ```
 ./Nan0Chat  --key <encryption key> --sig <signature> --host=localhost --server=false --port=6865 --username=Bob
 ```
-Replace <encryption key> with the encryption key and <signature> with the signature
+Replace \<encryption key> with the encryption key and \<signature> with the signature
+
+#### Obtaining an Encryption Key and Signature
+To obtain an encryption key and signature in base64, run the following snippet in a console:
+```go
+package main
+
+import (
+	"nan0"
+	"encoding/base64"
+	"fmt"
+)
+
+// A simple function to make the keys generated a sharable string
+func shareKeys() (encKeyShare, authKeyShare string) {
+	encKeyBytes := nan0.NewEncryptionKey()
+	authKeyBytes := nan0.NewHMACKey()
+
+	encKeyShare = base64.StdEncoding.EncodeToString(encKeyBytes[:])
+	authKeyShare = base64.StdEncoding.EncodeToString(authKeyBytes[:])
+
+	return
+}
+
+func main() {
+	// create the keys
+	encKey, sig := shareKeys()
+	// print the keys to the console
+	fmt.Printf("Encryption Key: %v\nSignature: %v", encKey, sig)
+}
+```
+Output:
+
+***Do NOT use these specific keys in your application***
+```
+Encryption Key: eQypV5GrNg0Vh+E3A90HJq+89KL/52g/IQApnUm7E+I=
+Signature: Ll0RHmOxfYJi9Y5X5YaK078ZjCOHo4wBnDGenjtyqAw=
+```
+***Do NOT use these specific keys in your application***
 
 #### Usage
 The server application will start with a message indicating that it is currently running. The server application must be
