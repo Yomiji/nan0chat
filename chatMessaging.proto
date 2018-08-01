@@ -1,0 +1,15 @@
+syntax = "proto3";
+package nan0chat;
+option go_package = "nan0chat";
+
+message User {
+    int64 userId = 1;
+    string userName = 2;
+}
+
+message ChatMessage {
+    int64 userId = 3;
+    int64 messageId = 4;
+    int64 time = 5;
+    string message = 6;
+}
