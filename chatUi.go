@@ -397,9 +397,12 @@ func (chatUi *ChatClientUI) redraw_all() {
 func (outputBox *OutputBox) addMessage(message string) {
 	messageLength := float64(len(message))
 	modifiedWidth := float64(outputBox.width - 1)
+	// if the message length is longer than the width of the outputbox, we must wrap by breaking up the message in
+	// sizes equal to the width
 	if messageLength > modifiedWidth {
 		for i := 0.0; i < math.Ceil(messageLength/modifiedWidth); i++ {
 			lowIdex := int(i * modifiedWidth)
+			// the min in this expression is to bound the idex to the actual message size
 			highIdex := int(math.Min((i*modifiedWidth)+modifiedWidth, messageLength))
 			outputBox.messages = append(outputBox.messages, message[lowIdex:highIdex])
 		}

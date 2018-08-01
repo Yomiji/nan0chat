@@ -8,7 +8,10 @@ import (
 	"time"
 )
 
+// create a new random number generator
 var random = rand.New(rand.NewSource(time.Now().Unix()))
+
+// application parameter flags definitions
 var EncryptKey = flag.String("key", "", "(Required) Encryption Key encoded in Base64")
 var Signature = flag.String("sig", "", "(Required) HMAC Signature encoded in Base64")
 var IsServer = flag.Bool("server", false, "Is this a server?")
@@ -30,6 +33,7 @@ func KeysToNan0Bytes(encKeyShare, authKeyShare string) (encKey, authKey *[32]byt
 	return
 }
 
+// Handles errors generated in the application
 func handleErr(e error, exec func(err error) interface{}) interface{} {
 	if e != nil {
 		fmt.Printf("Error occurred: %v\n", e)
