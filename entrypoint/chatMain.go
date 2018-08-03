@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"nan0chat"
+	"github.com/yomiji/nan0chat"
 	"flag"
 )
 
