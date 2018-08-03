@@ -51,7 +51,7 @@ To obtain an encryption key and signature in base64, run the following snippet i
 package main
 
 import (
-	"nan0"
+	"github.com/yomiji/nan0"
 	"encoding/base64"
 	"fmt"
 )
