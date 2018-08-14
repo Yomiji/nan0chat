@@ -48,8 +48,8 @@ func (client *ChatClient) Connect() {
 	nan0chat, err := client.internal.DialNan0Secure(encKey, authKey).
 		ReceiveBuffer(1).
 		SendBuffer(0).
-		MessageIdentity(new(ChatMessage)).
-	BuildNan0()
+		AddMessageIdentity(new(ChatMessage)).
+	Build()
 	// close the connection when this application closes
 	defer nan0chat.Close()
 
