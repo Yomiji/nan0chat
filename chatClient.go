@@ -1,9 +1,9 @@
 package nan0chat
 
 import (
-	"github.com/yomiji/nan0"
 	"time"
 	"fmt"
+	"github.com/Yomiji/nan0"
 )
 
 type ChatClient struct {
